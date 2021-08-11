@@ -5,7 +5,12 @@ class BasicWebPage:
         self.title_css = "h1"
         self.title_text = "Basic Web Page Example"
         self.explanation_css = "div.explanation > p"
-        self.explanation_text = "Very simple web pages have a structure illustrated by this page. And elements can have id and class attributes for styling and locating"
+        self.explanation_text = (
+            "Very simple web pages have a structure "
+            "illustrated by this page. And elements "
+            "can have id and class attributes for "
+            "styling and locating"
+        )
         self.paragraph_one_id = "para1"
         self.paragraph_one_text = "A paragraph of text"
         self.paragraph_two_id = "para2"
@@ -20,14 +25,11 @@ class BasicWebPage:
             if found_element is None:
                 return False
 
-        for element_id in (
-            self.paragraph_one_id,
-            self.paragraph_two_id
-        ): 
+        for element_id in (self.paragraph_one_id, self.paragraph_two_id):
             found_element = self.driver.find_element_by_id(element_id)
             if found_element is None:
                 return False
-        
+
         return True
 
     def validate_text_on_page(self):

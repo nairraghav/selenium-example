@@ -1,4 +1,3 @@
-from tests.pages.home_page import HomePage
 from selenium import webdriver
 from os import getenv as os_getenv
 

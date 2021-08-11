@@ -1,4 +1,6 @@
 from json import dumps as json_dumps
+
+
 class DynamicTablePage:
     def __init__(self, driver):
         self.driver = driver
@@ -6,7 +8,7 @@ class DynamicTablePage:
         self.title_css = "h1"
         self.title_text = "Dynamic HTML TABLE Tag"
         self.explanation_css = "div.explanation > p"
-        self.explanation_text = "An example of an HTML Table populated by JavaScript"
+        self.explanation_text = "An example of an HTML Table populated by " "JavaScript"
         self.table_name_css = "table#dynamictable > caption"
         self.table_name_text = "Dynamic Table"
         self.table_data_button_css = "div.centered > details"
@@ -36,7 +38,7 @@ class DynamicTablePage:
             self.table_json_field_id,
             self.table_caption_field_id,
             self.table_id_field_id,
-            self.table_refresh_button_id
+            self.table_refresh_button_id,
         ):
             found_element = self.driver.find_element_by_id(element_id)
             if found_element is None:
@@ -48,8 +50,12 @@ class DynamicTablePage:
         counter = 0
         table_data = self.driver.find_elements_by_css_selector(self.table_values_css)
         for user in self.default_table_data:
-            assert table_data[counter].text == user["name"], f"Actual: {table_data[counter].text}\t\tExpected: {user['name']}"
-            assert table_data[counter+1].text == str(user["age"]), f"Actual: {table_data[counter+1].text}\t\tExpected: {user['age']}"
+            assert table_data[counter].text == user["name"], (
+                f"Actual: {table_data[counter].text}\t\t" "Expected: {user['name']}"
+            )
+            assert table_data[counter + 1].text == str(user["age"]), (
+                f"Actual: {table_data[counter+1].text}\t\t" "Expected: {user['age']}"
+            )
             counter += 2
 
     def update_table_data(self):
@@ -59,4 +65,3 @@ class DynamicTablePage:
         table_data.send_keys(json_dumps(self.default_table_data))
 
         self.driver.find_element_by_id(self.table_refresh_button_id).click()
-

@@ -5,5 +5,5 @@ lint:
 	flake8 tests/
 
 format:
-	black tests/
+	black tests/ 
 
